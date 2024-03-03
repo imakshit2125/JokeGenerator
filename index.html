@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChatGPT Joke Generator</title>
+</head>
+<body>
+    <h1>My Joke Generator</h1>
+
+    <h1>Write a word you want to get a joke about </h1>
+    <input type="text" id="query" placeholder="Enter your search query">
+    <button onclick="search()">Search</button>
+    <div id="joke"></div>
+
+    <script>
+        async function search() {
+            const query = document.getElementById('query').value;
+            const response = await fetch(`/joke?input=${encodeURIComponent(query)}`);
+            const data = await response.json();
+            document.getElementById('joke').innerText = data.joke; // Access the 'joke' property of the response object
+            console.log(data.joke);
+        }
+    </script>
+</body>
+</html>
